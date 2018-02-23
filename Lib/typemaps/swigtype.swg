@@ -359,24 +359,26 @@
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1) SWIGTYPE & {
   void *vptr = 0;
   int res = SWIG_ConvertPtr($input, &vptr, $descriptor, 0);
-  $1 = SWIG_CheckState(res);
+  $1 = SWIG_CheckState(res) && vptr != 0;
 }
 
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1) SWIGTYPE && {
   void *vptr = 0;
   int res = SWIG_ConvertPtr($input, &vptr, $descriptor, 0);
-  $1 = SWIG_CheckState(res);
+  $1 = SWIG_CheckState(res) && vptr != 0;
 }
 
 #if defined(__cplusplus) && defined(%implicitconv_flag)
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1,implicitconv=1) const SWIGTYPE & {
-  int res = SWIG_ConvertPtr($input, 0, $descriptor, %implicitconv_flag);
-  $1 = SWIG_CheckState(res);
+  void *vptr = 0;
+  int res = SWIG_ConvertPtr($input, &vptr, $descriptor, %implicitconv_flag);
+  $1 = SWIG_CheckState(res) && vptr != 0;
 }
 
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1,implicitconv=1) const SWIGTYPE && {
-  int res = SWIG_ConvertPtr($input, 0, $descriptor, %implicitconv_flag);
-  $1 = SWIG_CheckState(res);
+  void *vptr = 0;
+  int res = SWIG_ConvertPtr($input, &vptr, $descriptor, %implicitconv_flag);
+  $1 = SWIG_CheckState(res) && vptr != 0;
 }
 
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1,implicitconv=1) SWIGTYPE {
@@ -387,12 +389,12 @@
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1) const SWIGTYPE & {
   void *vptr = 0;
   int res = SWIG_ConvertPtr($input, &vptr, $descriptor, 0);
-  $1 = SWIG_CheckState(res);
+  $1 = SWIG_CheckState(res) && vptr != 0;
 }
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1) const SWIGTYPE && {
   void *vptr = 0;
   int res = SWIG_ConvertPtr($input, &vptr, $descriptor, 0);
-  $1 = SWIG_CheckState(res);
+  $1 = SWIG_CheckState(res) && vptr != 0;
 }
 
 %typemap(typecheck,precedence=SWIG_TYPECHECK_POINTER,noblock=1) SWIGTYPE {
